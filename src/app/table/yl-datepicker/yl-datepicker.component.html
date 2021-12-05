@@ -1,0 +1,11 @@
+
+<ng-container>
+<mat-form-field >
+  <mat-label>{{_dateValue}}</mat-label>
+  <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+  <input matInput [matDatepicker]="picker" [(ngModel)]="_dateValue"  (dateInput)="addEvent('input', $event)" >
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+</ng-container>
+
+

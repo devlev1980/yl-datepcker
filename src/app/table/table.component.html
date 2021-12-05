@@ -1,0 +1,52 @@
+<ng-container *ngIf="tableForm">
+<form [formGroup]="tableForm" >
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" formArrayName="elements">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element let rowIndex=index" [formGroupName]="rowIndex"> {{element.position}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element let rowIndex=index" [formGroupName]="rowIndex"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef> Weight </th>
+      <td mat-cell *matCellDef="let element let rowIndex=index" [formGroupName]="rowIndex"> {{element.weight}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef> Symbol </th>
+      <td mat-cell *matCellDef="let element let rowIndex=index" [formGroupName]="rowIndex"> {{element.symbol}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let element let rowIndex=index" [formGroupName]="rowIndex" >
+<!--        <mat-form-field appearance="fill">-->
+<!--          <mat-label>Choose date:</mat-label>-->
+<!--          <input matInput [matDatepicker]="picker" formControlName="date" (dateChange)="onDate($event)">-->
+<!--          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--          <mat-datepicker #picker></mat-datepicker>-->
+<!--        </mat-form-field>-->
+        <yl-datepicker   formControlName="date" ></yl-datepicker>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  {{tableForm?.value['elements'] | json}}
+</form>
+</ng-container>
+
